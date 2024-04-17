@@ -6,14 +6,12 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'windows-latest'
-
 variables:
   azureSubscription: '11d777d7-7553-4492-bdb5-58e6dcd6307d'
   env-dev: 'DOTNETAAPP'
   webAppName: 'Microsoft.Web-WebApp-Portal-080f7752-a35e'
-  windowsVM: 'windows-latest' 
+  windowsVM: 'windows-latest'
+
 
 
 steps:
