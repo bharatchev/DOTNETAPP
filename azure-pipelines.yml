@@ -10,12 +10,9 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
   azureSubscription: '11d777d7-7553-4492-bdb5-58e6dcd6307d'
   env-dev: 'DOTNETAAPP'
-  webAppName: 'Microsoft.Web-WebApp-Portal-771002a3-b16d'
+  webAppName: 'Microsoft.Web-WebApp-Portal-080f7752-a35e'
   windowsVM: 'windows-latest' 
 
 
