@@ -10,7 +10,7 @@ variables:
   azureSubscription: '59890c82-957d-449f-9e09-90de69b12cbe'
   env-dev: 'ASP-KSRIT-b953'
   webAppName: 'romeo.azurewebsites.net'
-  windowsVM: 'windows-latest'
+  LinuxVM: 'ubuntu-latest'
 
 steps:
 - task: UseDotNet@2
