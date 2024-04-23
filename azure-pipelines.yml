@@ -7,9 +7,9 @@ trigger:
 - master
 
 variables:
-  azureSubscription: '11d777d7-7553-4492-bdb5-58e6dcd6307d'
-  env-dev: 'DOTNETAAPP'
-  webAppName: 'Microsoft.Web-WebApp-Portal-080f7752-a35e'
+  azureSubscription: '59890c82-957d-449f-9e09-90de69b12cbe'
+  env-dev: 'ASP-KSRIT-b953'
+  webAppName: 'romeo.azurewebsites.net'
   windowsVM: 'windows-latest'
 
 steps:
