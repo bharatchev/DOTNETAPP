@@ -8,37 +8,46 @@ trigger:
 
 variables:
   azureSubscription: '59890c82-957d-449f-9e09-90de69b12cbe'
-  env-dev: 'ASP-KSRIT-b953'
   webAppName: 'romeo.azurewebsites.net'
+  env-dev: 'ASP-KSRIT-b953'
   LinuxVM: 'ubuntu-latest'
+  WindowsVM: 'windows-latest'
 
-steps:
-- task: UseDotNet@2
-  displayName: 'Use .NET Core 6'
-  inputs:
-    version: 6.0.x
+stages:
+     - stage: Build
+       jobs:
+       - job: BuildJob
+        pool:
+          vmImage: ${LinuxVM}
+      steps:
+          - task: UseDotNet@2
+            displayName: 'Use .NET Core 6'
+            inputs:
+            version: 6.0.x
  
-- task: DotNetCoreCLI@2
-  displayName: Restore
-  inputs:
-    command: restore
-    projects: '**/*.csproj'
+          - task: DotNetCoreCLI@2
+            displayName: Restore
+            inputs:
+            command: restore
+            projects: '**/*.csproj'
  
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    projects: '**/*.csproj'
+          - task: DotNetCoreCLI@2
+            displayName: Build
+            inputs:
+            projects: '**/*.csproj'
+            arguments: '--configuration $(BuildConfiguration)'
  
-- task: DotNetCoreCLI@2
-  displayName: Publish
-  inputs:
-    command: publish
-    publishWebProjects: false
-    projects: '**/*.csproj'
-    arguments: '--configuration release --output $(build.artifactstagingdirectory) /property:PublishWithAspNetCoreTargetManifest=false'
-    zipAfterPublish: false
+          - task: DotNetCoreCLI@2
+            displayName: Publish
+            inputs:
+            command: publish
+            publishWebProjects: true
+            projects: '**/*.csproj'
+            arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+            zipAfterPublish: true
  
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact'
-  inputs:
-    ArtifactName: myproject
+          - task: PublishBuildArtifacts@1
+             displayName:'Publish Artifact'
+             inputs:
+              PathtoPublish: "$(build.artifactstagingdirectory)"
+             condition: succeededOrfailed()
